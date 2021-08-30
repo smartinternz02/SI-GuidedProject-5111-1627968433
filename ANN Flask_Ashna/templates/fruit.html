@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html >
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>Fruit Prediction ANN</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<style>
+		.back {
+			
+			display: inline-block;
+			border: 5px solid #fca503;
+			padding: 15px;
+			background: PeachPuff;
+			background-clip: padding-box;
+		
+		}
+		
+		.output {
+			padding: 15px;
+			background: white;	
+		}
+		
+		
+		html *{
+		   font-family: Arial !important;
+		}
+		
+		body, html{
+    		background-image: url("https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Colorful-Geometric-Simple-Background-Image.jpg");
+    		background-size: cover;
+			height= 100%
+		}
+		
+		.full{
+			background-image: url("fishbg.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		
+		input[type=text], select {
+			width: 100%;
+			padding: 5px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		
+		.btn{
+			background-color: Aquamarine;
+			color: DarkBlue;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: solid black;
+			border-radius: 4px;
+			cursor: pointer;
+			
+		}
+
+		.btn:hover {
+			background-color: MistyRose;
+		}
+
+	</style>
+</head>
+
+
+<body>
+<div class= "full">
+	<center>
+		<br/>
+		<div class="title" ><h1>Fruit Prediction</h1></div>
+		<br/><br/>
+
+		 <!-- Main Input For Receiving Query to our ML -->
+		<form action="{{url_for('y_predict')}}" method="post" role="form">
+			
+			
+				<div class="back">
+					
+					<b><strong>Please enter the Mass of the fruit</strong></b><br/><br/>
+					<input type="text" name="imass" placeholder="mass" required="required" maxlength="120" />
+					<br></br>
+					
+					<b><strong>Please enter measured width of the fruit</strong></b><br/><br/>
+					<input type="text" name="iwidth" placeholder="width" required="required" maxlength="120" />
+					<br></br>
+					
+					<b><strong>Please enter measured Height of the fruit</strong></b><br/><br/>
+					<input type="text" name="iheight" placeholder="height" required="required" maxlength="120" />
+					<br></br>
+					
+
+    <select name = 'fruit_label'required="required">
+    <option value="">Select fruit label </option>
+    <option value = "1">1</option>
+    <option value = "2">2 </option>
+    <option value = "3">3</option>
+    <option value = "4">4</option>
+    </select><br></br>
+
+    <select name = 'fruit_subtype'required="required">
+    <option value="">Select Fruit Subtype </option>
+    <option value = "granny_smith">granny_smith </option>
+    <option value = "mandarin"> mandarin </option>
+    <option value = "braeburn">braeburn </option>
+    <option value = "golden_delicious"> golden_delicious </option>
+    <option value = "cripps_pink"> cripps_pink </option>
+    <option value = "spanish_jumbo">spanish_jumbo </option>
+    <option value = "selected_seconds">selected_seconds </option>
+    <option value = "turkey_navel"> turkey_navel</option>
+    <option value = "spanish_belsan"> spanish_belsan </option>
+    <option value = "unknown">unknown</option>
+    </select><br></br>
+    			
+					<b><strong>Please enter color-score of the fruit</strong></b><br/><br/>
+					<input type="text" name="icolor" placeholder="color_score" required="required" maxlength="120" />
+					<br></br>
+					
+
+					<button type="submit" class="btn"><b><strong>Predict</b></strong></button>
+				
+				</div>
+
+		</form>
+
+	   <br>
+	   <br>
+	   	<div class="output" ><h1>{{ prediction_text }}</h1></div>
+	   <br><br><br><br><br><br><br><br>
+	</center>
+</div>
+</body>
+</html>
